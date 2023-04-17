@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    environment:
+      - google_cred=${google_cred}
+      - spreadsheet_id=${spreadsheet_id}
+      - host=db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python main.py"
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+
+    environment:
+      - POSTGRES_DB=orders_test
+      - POSTGRES_USER=postgres
+
+volumes:
+  dev-db-data:
