@@ -12,11 +12,11 @@ class DbTest(unittest.TestCase):
     """
     conn = psycopg2.connect(
         database='orders_test',
-        host='db',
+        host='localhost',
         user='postgres',
         password='123'
     )
-    worker = DBWorker(database='orders_test', host='db')
+    worker = DBWorker(database='orders_test', host='localhost')
 
     @classmethod
     def _crate_table(cls):
