@@ -52,7 +52,7 @@ def main(google_cred, spreadsheet_id, host='db'):
 
 
 if __name__ == '__main__':
-    google_cred = os.environ.get('google_cred')
-    spreadsheet_id = os.environ.get('spreadsheet_id')
-    host = os.environ.get('host', 'db')
+    google_cred = os.environ.get('GOOGLE_CRED')
+    spreadsheet_id = os.environ.get('SPREADSHEET_ID')
+    host = os.environ.get('POSTGRES_HOST')
     main(google_cred, spreadsheet_id, host)

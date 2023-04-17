@@ -1,3 +1,4 @@
+import os
 import unittest
 
 import psycopg2
@@ -11,12 +12,15 @@ class DbTest(unittest.TestCase):
     Base class encapsulate attrs and methods to handle DB
     """
     conn = psycopg2.connect(
-        database='orders_test',
-        host='db',
-        user='postgres',
-        password='123'
+        database=os.environ.get('POSTGRES_DB'),
+        host=os.environ.get('POSTGRES_HOST'),
+        user=os.environ.get('POSTGRES_USER'),
+        password=os.environ.get('POSTGRES_PASSWORD')
     )
-    worker = DBWorker(database='orders_test', host='db')
+    worker = DBWorker(
+        database=os.environ.get('POSTGRES_DB'),
+        host=os.environ.get('POSTGRES_HOST')
+    )
 
     @classmethod
     def _crate_table(cls):

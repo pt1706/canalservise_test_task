@@ -7,9 +7,9 @@ jobs:
   test-lint:
     name: Test and Lint
     env:
-      google_cred: test-383011-b55298c8b776.json
-      spreadsheet_id: 1k9T1mnxOeG4aBE_MX479iiHtWGqG05tFZctYJhXPuCA
-      host: db
+      GOOGLE_CRED: ${{ secrets.GOOGLE_CRED }}
+      SPREADSHEET_ID: 1k9T1mnxOeG4aBE_MX479iiHtWGqG05tFZctYJhXPuCA
+      POSTGRES_HOST: db
       POSTGRES_DB: orders_test
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
@@ -27,4 +27,3 @@ jobs:
         run: docker-compose run --rm app sh -c "flake8"
       - name: Test
         run: docker-compose run --rm app sh -c "python -m unittest"
-

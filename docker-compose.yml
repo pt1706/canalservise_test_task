@@ -5,9 +5,9 @@ services:
     build:
       context: .
     environment:
-      - google_cred=${google_cred}
-      - spreadsheet_id=${spreadsheet_id}
-      - host=${host}
+      - GOOGLE_CRED=${GOOGLE_CRED}
+      - SPREADSHEET_ID=${SPREADSHEET_ID}
+      - POSTGRES_HOST=${POSTGRES_HOST}
     ports:
       - "8000:8000"
     volumes:
