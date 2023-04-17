@@ -33,6 +33,7 @@ jobs:
           POSTGRES_DB: orders_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 123
+          POSTGRES_HOST: localhost
         ports:
           - 5432/tcp
     steps:
