@@ -9,9 +9,9 @@ class TestMain(unittest.TestCase):
     testcase for testing main:
     """
 
-    @patch('main.DBWorker')
-    @patch('main.ApiHandler')
-    @patch('main.CurrencyUpdater')
+    @patch('app.main.DBWorker')
+    @patch('app.main.ApiHandler')
+    @patch('app.main.CurrencyUpdater')
     @patch('builtins.print')
     def test_retrieve_currency(self,
                                mock_print,
@@ -59,9 +59,9 @@ class TestMain(unittest.TestCase):
         self.assertEqual(1, mock_DBWorker().delete_orders_from_db.call_count)
         mock_DBWorker().delete_orders_from_db.assert_called_with([4])
 
-    @patch('main.DBWorker')
-    @patch('main.ApiHandler')
-    @patch('main.CurrencyUpdater')
+    @patch('app.main.DBWorker')
+    @patch('app.main.ApiHandler')
+    @patch('app.main.CurrencyUpdater')
     @patch('builtins.print')
     def test_retrieve_currency_negative_api(self,
                                             mock_print,
@@ -89,9 +89,9 @@ class TestMain(unittest.TestCase):
         mock_DBWorker().insert_order_in_db.assert_not_called()
         mock_DBWorker().delete_orders_from_db.assert_not_called()
 
-    @patch('main.DBWorker')
-    @patch('main.ApiHandler')
-    @patch('main.CurrencyUpdater')
+    @patch('app.main.DBWorker')
+    @patch('app.main.ApiHandler')
+    @patch('app.main.CurrencyUpdater')
     @patch('builtins.print')
     def test_retrieve_currency_negative_currency(self,
                                                  mock_print,
