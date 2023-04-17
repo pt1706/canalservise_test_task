@@ -12,13 +12,13 @@ class DbTest(unittest.TestCase):
     Base class encapsulate attrs and methods to handle DB
     """
     conn = psycopg2.connect(
-        database=os.environ.get('POSTGRES_DB'),
+        database='orders_test',
         host=os.environ.get('POSTGRES_HOST'),
         user=os.environ.get('POSTGRES_USER'),
         password=os.environ.get('POSTGRES_PASSWORD')
     )
     worker = DBWorker(
-        database=os.environ.get('POSTGRES_DB'),
+        database='orders_test',
         host=os.environ.get('POSTGRES_HOST')
     )
 
