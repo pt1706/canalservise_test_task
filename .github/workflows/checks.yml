@@ -1,54 +1,22 @@
 ---
-name: Checks
+name: checks
 
 on: [push]
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
+  test-lint:
+    name: Test and Lint
+    runs-on: ubuntu-20.04
     steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.10'
-      - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Run flake8
-        run: flake8 .
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    needs: [lint]
-
-    services:
-      db:
-        image: postgres
-        env:
-          POSTGRES_DB: orders_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 123
-          POSTGRES_HOST: db
-        ports:
-          - 5432/tcp
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.10'
-    - name: Install deps
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run test
-      run: python -m unittest
-      env:
-        POSTGRES_HOST: db
-        POSTGRES_PORT: 5432
+      - name: Lint
+        run: docker-compose run --rm app sh -c "flake8"
+      - name: Test
+          run: docker-compose run --rm app sh -c "python -m unittest"
 

@@ -3,7 +3,7 @@ import unittest
 import psycopg2
 from psycopg2 import DatabaseError
 
-from app.db_worker import DBWorker
+from db_worker import DBWorker
 
 
 class DbTest(unittest.TestCase):

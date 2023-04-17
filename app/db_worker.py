@@ -5,7 +5,7 @@ import psycopg2.pool as pool
 from psycopg2 import DatabaseError
 from psycopg2.errors import UndefinedTable
 
-from app.http_worker import Logger
+from http_worker import Logger
 
 
 class DBWorker(Logger):

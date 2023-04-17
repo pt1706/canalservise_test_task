@@ -5,7 +5,7 @@ from freezegun import freeze_time
 
 import responses
 
-from app.http_worker import CurrencyUpdater, ApiHandler
+from http_worker import CurrencyUpdater, ApiHandler
 
 
 class TestCurrencyUpdater(unittest.TestCase):
@@ -78,8 +78,8 @@ class TestApiHandler(unittest.TestCase):
         self.google_cred = 'cred'
         self.spreadsheet_id = 'spreadsheet_id'
 
-    @patch('app.http_worker.build')
-    @patch('app.http_worker.ServiceAccountCredentials')
+    @patch('http_worker.build')
+    @patch('http_worker.ServiceAccountCredentials')
     def test_retrieve_orders_one_request(self,
                                          mock_ServiceAccountCredentials,
                                          mock_build):
@@ -99,8 +99,8 @@ class TestApiHandler(unittest.TestCase):
             *mock_ServiceAccountCredentials.from_json_keyfile_name.call_args
         )
 
-    @patch('app.http_worker.build')
-    @patch('app.http_worker.ServiceAccountCredentials')
+    @patch('http_worker.build')
+    @patch('http_worker.ServiceAccountCredentials')
     def test_retrieve_orders_some_request(self,
                                           mock_ServiceAccountCredentials,
                                           mock_build):
@@ -122,8 +122,8 @@ class TestApiHandler(unittest.TestCase):
         ).retrieve_orders()
         self.assertEqual([1, 2, 3, 4, 5, 6], res)
 
-    @patch('app.http_worker.build')
-    @patch('app.http_worker.ServiceAccountCredentials')
+    @patch('http_worker.build')
+    @patch('http_worker.ServiceAccountCredentials')
     def test_retrieve_orders_negative(self,
                                       mock_ServiceAccountCredentials,
                                       mock_build):

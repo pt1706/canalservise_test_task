@@ -2,8 +2,8 @@ import inspect
 import os
 import time
 
-from app.db_worker import DBWorker
-from app.http_worker import ApiHandler, CurrencyUpdater, Logger
+from db_worker import DBWorker
+from http_worker import ApiHandler, CurrencyUpdater, Logger
 
 
 def main(google_cred, spreadsheet_id, host='db'):
